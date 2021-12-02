@@ -7,6 +7,7 @@ install:
 	@mkdir -p $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 ios-mount.sh $(DESTDIR)$(PREFIX)/bin/ios-mount
 	@ln -s $(PREFIX)/bin/ios-mount  $(DESTDIR)$(PREFIX)/bin/iosmount
+	@mkdir -p $(DESTDIR)$(PREFIX)/share/applications
 	install -m 0755 iOS-Mount.desktop $(DESTDIR)$(PREFIX)/share/applications/iOS-Mount.desktop
 
 uninstall:
