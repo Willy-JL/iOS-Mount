@@ -27,7 +27,7 @@ do
         msg="The trust prompt was denied, please disconnect and reconnect the device..."
         ;;
       *)
-        msg="Something went wrong pairing the device the device...\\n\\nError message:\\n$pair_output"
+        msg="Something went wrong pairing the device...\\n\\nError message:\\n$pair_output"
         ;;
     esac
 
