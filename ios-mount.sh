@@ -116,7 +116,7 @@ if [ "$choice" != "Filesystem (Photos and Media)" ] ;
 then
   [[ -v apps["$choice"] ]] || exit
 fi
-mountpoint="$HOME/iosmount"
+mountpoint="$HOME/iOS-Mount"
 mkdir -p "$mountpoint" 2>&1 > /dev/null
 ifuse_output="$(fusermount -u "$mountpoint" 2>&1)"
 ifuse_status=$?
