@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=iOS-Mount
+Comment=Mount iOS photos and app files
+Type=Application
+Categories=Utility;System;FileTools;
+Keywords=3utools;ifunbox;ios;iosmount;iphone;
+Icon=usb
+Exec=ios-mount %U
+Terminal=false
