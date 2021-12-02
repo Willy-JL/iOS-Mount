@@ -7,10 +7,12 @@ then
   zenity_status_file="$(mktemp)"
   zenity_pid_file="$(mktemp)"
 fi
+pair_cmd="idevicepair validate"
 while [ "$pair_status" != "0" ] ;
 do
-  pair_output="$(idevicepair validate 2>&1)"
+  pair_output="$($pair_cmd 2>&1)"
   pair_status=$?
+  pair_cmd="idevicepair validate"
   if [ "$pair_status" != "0" ] ;
   then
     case "$pair_output" in
@@ -25,6 +27,9 @@ do
         ;;
       *"the user denied the trust dialog"*)
         msg="The trust prompt was denied, please disconnect and reconnect the device..."
+        ;;
+      *"is not paired with this host"*)
+        pair_cmd="idevicepair pair"
         ;;
       *)
         msg="Something went wrong pairing the device...\\n\\nError message:\\n$pair_output"
