@@ -133,7 +133,7 @@ then
 fi
 if [ "$choice" = "Filesystem (Photos and Media)" ] ;
 then
-  ifuse_output="$(ifuse -o allow_other "$mountpoint" 2>&1)"
+  ifuse_output="$(ifuse "$mountpoint" 2>&1)"
   ifuse_status=$?
   if [ "$ifuse_status" = "0" ] ;
   then
@@ -142,7 +142,7 @@ then
     msg="Something went wrong while mounting device filesystem on $mountpoint..."
   fi
 else
-  ifuse_output="$(ifuse -o allow_other --documents "${apps["$choice"]}" "$mountpoint" 2>&1)"
+  ifuse_output="$(ifuse --documents "${apps["$choice"]}" "$mountpoint" 2>&1)"
   ifuse_status=$?
   if [ "$ifuse_status" = "0" ] ;
   then
