@@ -30,6 +30,10 @@ while true; do
           msg="The trust prompt was denied, please disconnect and reconnect the device..."
           ;;
         *"is not paired with this host"*)
+          msg="$old_msg"
+          if [ "$msg" = "" ] ; then
+            msg="Pairing device..."
+          fi
           pair_cmd="idevicepair pair"
           ;;
         *)
