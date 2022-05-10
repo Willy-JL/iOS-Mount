@@ -113,7 +113,7 @@ while true; do
     PS3="$oldps3"
   fi
   if [ "$choice" != "Filesystem (Photos and Media)" ] ; then
-    [[ -v apps["$choice"] ]] || continue
+    [[ -v apps["$choice"] ]] || echo "No option selected, exiting..." && exit 0
   fi
   mountpoint="$HOME/iOS-Mount"
   mkdir -p "$mountpoint" 2>&1 > /dev/null
