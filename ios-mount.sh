@@ -67,7 +67,7 @@ while true; do
             kill $zenity_pid
           fi
           {
-            zenity --error --no-wrap --text "$msg" &
+            zenity --title "iOS-Mount" --error --no-wrap --text "$msg" &
             zenity_pid=$!
             echo $zenity_pid > "$zenity_pid_file"
             wait $zenity_pid
@@ -101,7 +101,7 @@ while true; do
   done <<< $(for app in "${!apps[@]}" ; do echo "$app" ; done | sort)
 
   if $gui ; then
-    choice=$(zenity --list --width 250 --height 300 --hide-header --text "What should be mounted?" --column "" "${options[@]}")
+    choice=$(zenity --title "iOS-Mount" --list --width 250 --height 300 --hide-header --text "What should be mounted?" --column "" "${options[@]}")
     if [ "$?" != "0" ] ; then
       exit
     fi
@@ -125,7 +125,7 @@ while true; do
   if [ "$ifuse_status" != "0" ] && [[ "$ifuse_output" != *"not found"* ]] ; then
     msg="Something went wrong while preparing $mountpoint...\\nError message:\\n$ifuse_output"
     if $gui ; then
-      zenity --error --no-wrap --text "$msg"
+      zenity --title "iOS-Mount" --error --no-wrap --text "$msg"
       if [ "$?" != "0" ] ; then
         exit
       fi
@@ -154,7 +154,7 @@ while true; do
   if [ "$ifuse_status" = "0" ] ; then
     if $gui ; then
       xdg-open "$mountpoint"
-      zenity --info --no-wrap --text "$msg\\nWhen you are done click below or close this window to unmount!" --ok-label "Unmount!"
+      zenity --title "iOS-Mount" --info --no-wrap --text "$msg\\nWhen you are done click below or close this window to unmount!" --ok-label "Unmount!"
     else
       echo -e "$msg\\nPress [ENTER] when you are done and want to unmount!"
       read
@@ -162,7 +162,7 @@ while true; do
   else
     msg="$msg\\nError message:\\n$ifuse_output"
     if $gui ; then
-      zenity --error --no-wrap --text "$msg"
+      zenity --title "iOS-Mount" --error --no-wrap --text "$msg"
       if [ "$?" != "0" ] ; then
         exit
       fi
@@ -176,14 +176,14 @@ while true; do
   if [ "$ifuse_status" = "0" ] ; then
     msg="Successfully unmounted $mountpoint!"
     if $gui ; then
-      zenity --info --no-wrap --text "$msg"
+      zenity --title "iOS-Mount" --info --no-wrap --text "$msg"
     else
       echo -e "$msg"
     fi
   else
     msg="Something went wrong while unmounting $mountpoint...\\nError message:\\n$ifuse_output"
     if $gui ; then
-      zenity --error --no-wrap --text "$msg"
+      zenity --title "iOS-Mount" --error --no-wrap --text "$msg"
       if [ "$?" != "0" ] ; then
         exit
       fi
