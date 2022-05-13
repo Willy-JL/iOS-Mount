@@ -120,7 +120,7 @@ while true; do
   fi
   mountpoint="$HOME/iOS-Mount"
   mkdir -p "$mountpoint" 2>&1 > /dev/null
-  ifuse_output="$(fusermount -u "$mountpoint" 2>&1)"
+  ifuse_output="$(fusermount -u -z "$mountpoint" 2>&1)"
   ifuse_status=$?
   if [ "$ifuse_status" != "0" ] && [[ "$ifuse_output" != *"not found"* ]] ; then
     msg="Something went wrong while preparing $mountpoint...\\nError message:\\n$ifuse_output"
@@ -171,7 +171,7 @@ while true; do
     fi
     continue
   fi
-  ifuse_output="$(fusermount -u "$mountpoint" 2>&1)"
+  ifuse_output="$(fusermount -u -z "$mountpoint" 2>&1)"
   ifuse_status=$?
   if [ "$ifuse_status" = "0" ] ; then
     msg="Successfully unmounted $mountpoint!"
