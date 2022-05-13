@@ -154,7 +154,7 @@ while true; do
   if [ "$ifuse_status" = "0" ] ; then
     if $gui ; then
       xdg-open "$mountpoint"
-      zenity --info --no-wrap --text "$msg\\nClose this window when you are done and want to unmount!"
+      zenity --info --no-wrap --text "$msg\\nWhen you are done click below or close this window to unmount!" --ok-label "Unmount!"
     else
       echo -e "$msg\\nPress [ENTER] when you are done and want to unmount!"
       read
